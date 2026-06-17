@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://qdj3ygxum4jl"]
+
+[ext_resource type="Script" uid="uid://cmq3ve5dm40gf" path="res://scripts/Player/player.gd" id="1_3vyb7"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3vyb7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vyb7"]
+albedo_color = Color(0.18039216, 1, 1, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3vyb7"]
+size = Vector3(2.4125977, 1, 1.9448853)
+
+[node name="Player" type="CharacterBody3D" unique_id=898052104]
+script = ExtResource("1_3vyb7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=109962423]
+mesh = SubResource("CapsuleMesh_3vyb7")
+surface_material_override/0 = SubResource("StandardMaterial3D_3vyb7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1878488335]
+shape = SubResource("CapsuleShape3D_g2els")
+
+[node name="AttackHitbox" type="Area3D" parent="." unique_id=1782737971]
+collision_mask = 3
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackHitbox" unique_id=1804370243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.055908203, 0, -0.038726807)
+shape = SubResource("BoxShape3D_3vyb7")
+
+[connection signal="body_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_body_entered"]
+[connection signal="body_exited" from="AttackHitbox" to="." method="_on_attack_hitbox_body_exited"]

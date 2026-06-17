@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://emtwcfuo8dry"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v8xky"]
+size = Vector3(2.031189, 1, 2.338623)
+
+[node name="AttackHitbox" type="Area3D" unique_id=964029436]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1440498218]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07040405, 0, -0.037963867)
+shape = SubResource("BoxShape3D_v8xky")
