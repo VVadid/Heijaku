@@ -13,7 +13,7 @@ class_name PlayerMovement
 # Dash
 @export var dash_speed: float = 18.0
 @export var dash_duration: float = 0.25
-@export var dash_cooldown: float = 0.8
+@export var dash_cooldown: float = 1
 
 # Roll
 @export var roll_speed: float = 12.0
