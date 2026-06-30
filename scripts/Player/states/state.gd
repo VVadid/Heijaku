@@ -1,7 +1,8 @@
-class_name PlayerState
+class_name State
 extends Node
 
-var player: PlayerMovement
+var player: Player
+var state_machine: StateMachine
 
 func enter(_msg: Dictionary = {}) -> void:
 	pass
@@ -14,6 +15,3 @@ func physics_update(_delta: float) -> void:
 
 func exit() -> void:
 	pass
-
-func change_state(state_name: String, msg: Dictionary = {}) -> void:
-	player.change_state(state_name, msg)

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://s8rtd88s6j8l"]
 
-[ext_resource type="Script" uid="uid://dx0ofd8buv3ry" path="res://scripts/Enemy/enemy.gd" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://c1ataun2067x" path="res://scripts/Enemy/enemy_base.gd" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://w4u1tlnoteol" path="res://scenes/progress_bar.gd" id="2_md0e3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8tegq"]
 
@@ -8,15 +9,47 @@
 vertex_color_use_as_albedo = true
 albedo_color = Color(0.8788358, 0, 0.2745546, 1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_7p1mj"]
+size = Vector3(0.48, 0.485, 0.5)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_md0e3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7p1mj"]
+radius = 3.356421
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7p1mj"]
+size = Vector3(0.9658203, 1, 2.1026611)
 
 [node name="Enemy" type="CharacterBody3D" unique_id=443118059]
 script = ExtResource("1_7p1mj")
-max_health = 50.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1312079635]
 mesh = SubResource("CapsuleMesh_8tegq")
 surface_material_override/0 = SubResource("StandardMaterial3D_7p1mj")
 
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=47941897]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.395, 0.49)
+mesh = SubResource("BoxMesh_7p1mj")
+surface_material_override/0 = SubResource("StandardMaterial3D_7p1mj")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=566754384]
 shape = SubResource("CapsuleShape3D_md0e3")
+
+[node name="DetectionArea" type="Area3D" parent="." unique_id=2074153807]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea" unique_id=821249030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.275936)
+shape = SubResource("SphereShape3D_7p1mj")
+
+[node name="AttackArea" type="Area3D" parent="." unique_id=2042226944]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackArea" unique_id=999099883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.017089844, 0, 0.8970337)
+shape = SubResource("BoxShape3D_7p1mj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1658106278]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=288348380]
+offset_right = 4.0
+offset_bottom = 27.0
+script = ExtResource("2_md0e3")

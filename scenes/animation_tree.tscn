@@ -1,0 +1,182 @@
+[gd_scene format=3 uid="uid://byegnosakjve"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a38lo"]
+animation = &"Double_Jump_Loop_ZeroHeight_Z0"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4ni07"]
+animation = &"Double_Jump_End"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l71n6"]
+animation = &"Double_Jump_Start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ke2ow"]
+animation = &"Jump_Loop_ZeroHeight"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fulsm"]
+animation = &"Jump_End"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4r5pv"]
+animation = &"Jump_Start"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_f1ej7"]
+states/DoubleJumpFall/node = SubResource("AnimationNodeAnimation_a38lo")
+states/DoubleJumpFall/position = Vector2(523, 157)
+states/DoubleJumpLand/node = SubResource("AnimationNodeAnimation_4ni07")
+states/DoubleJumpLand/position = Vector2(523, 219)
+states/DoubleJumpStart/node = SubResource("AnimationNodeAnimation_l71n6")
+states/DoubleJumpStart/position = Vector2(523, 92)
+states/JumpFall/node = SubResource("AnimationNodeAnimation_ke2ow")
+states/JumpFall/position = Vector2(353, 157)
+states/JumpLand/node = SubResource("AnimationNodeAnimation_fulsm")
+states/JumpLand/position = Vector2(353, 219)
+states/JumpStart/node = SubResource("AnimationNodeAnimation_4r5pv")
+states/JumpStart/position = Vector2(353, 92)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dt7fs"]
+animation = &"Damage_Die"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4r5pv"]
+states/Damage_Die/node = SubResource("AnimationNodeAnimation_dt7fs")
+states/Damage_Die/position = Vector2(417, 109)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ujl30"]
+animation = &"Idle_A_to_B"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_31cv2"]
+animation = &"Idle_B_to_A"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pf23h"]
+animation = &"Idle_ver_A"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wqfne"]
+animation = &"Idle_ver_B"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b7awm"]
+animation = &"Crouch_ver_B_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5fpcc"]
+animation = &"Crouch_ver_B_Fwd"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_oprun"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_b7awm")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_5fpcc")
+blend_point_1/pos = 0.4
+min_space = 0.0
+max_space = 0.4
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wnwbv"]
+animation = &"Idle_ver_B"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gl8cc"]
+animation = &"Walk_ver_B_Front"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_487ah"]
+animation = &"Run_Fast_ver_B"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_roy23"]
+animation = &"Jogging_8Way_verB_F"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_md1ol"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_wnwbv")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_gl8cc")
+blend_point_1/pos = 0.2
+blend_point_2/node = SubResource("AnimationNodeAnimation_487ah")
+blend_point_2/pos = 1.0
+blend_point_3/node = SubResource("AnimationNodeAnimation_roy23")
+blend_point_3/pos = 0.5
+min_space = 0.0
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bj30b"]
+state_machine_type = 2
+states/Crouch_Locmotion/node = SubResource("AnimationNodeBlendSpace1D_oprun")
+states/Crouch_Locmotion/position = Vector2(369, 157)
+states/Standing_Locmotion/node = SubResource("AnimationNodeBlendSpace1D_md1ol")
+states/Standing_Locmotion/position = Vector2(369, 81)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oprun"]
+animation = &"Crouch_ver_A_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a8ls1"]
+animation = &"Crouch_ver_A_Fwd"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_a8ls1"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_oprun")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_a8ls1")
+blend_point_1/pos = 0.4
+min_space = 0.0
+max_space = 0.4
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qfm1y"]
+animation = &"Idle_ver_A"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_60mlk"]
+animation = &"Walk_ver_A_Front"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i4ail"]
+animation = &"Run_Fast_ver_A"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_a38lo"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_qfm1y")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_60mlk")
+blend_point_1/pos = 0.5
+blend_point_2/node = SubResource("AnimationNodeAnimation_i4ail")
+blend_point_2/pos = 1.0
+min_space = 0.0
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4ni07"]
+states/Crouch_Locmotion/node = SubResource("AnimationNodeBlendSpace1D_a8ls1")
+states/Crouch_Locmotion/position = Vector2(409, 172)
+states/Standing_Locomotion/node = SubResource("AnimationNodeBlendSpace1D_a38lo")
+states/Standing_Locomotion/position = Vector2(409, 100)
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wnwbv"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gl8cc"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jc3p3"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hax0n"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_a38lo"]
+state_machine_type = 2
+states/AirState/node = SubResource("AnimationNodeStateMachine_f1ej7")
+states/AirState/position = Vector2(223, 478.44232)
+states/DeathState/node = SubResource("AnimationNodeStateMachine_4r5pv")
+states/DeathState/position = Vector2(677, 478.44232)
+states/Idle_A_to_B/node = SubResource("AnimationNodeAnimation_ujl30")
+states/Idle_A_to_B/position = Vector2(197, 194.44232)
+states/Idle_B_to_A/node = SubResource("AnimationNodeAnimation_31cv2")
+states/Idle_B_to_A/position = Vector2(197, -48.55768)
+states/Idle_ver_A/node = SubResource("AnimationNodeAnimation_pf23h")
+states/Idle_ver_A/position = Vector2(126, 79)
+states/Idle_ver_B/node = SubResource("AnimationNodeAnimation_wqfne")
+states/Idle_ver_B/position = Vector2(275, 79)
+states/Melee_Ground/node = SubResource("AnimationNodeStateMachine_bj30b")
+states/Melee_Ground/position = Vector2(506, 186.44232)
+states/Start/position = Vector2(-2, 79)
+states/Unarmed_Ground/node = SubResource("AnimationNodeStateMachine_4ni07")
+states/Unarmed_Ground/position = Vector2(506, 79)
+transitions = ["Idle_B_to_A", "Idle_ver_A", SubResource("AnimationNodeStateMachineTransition_wnwbv"), "Idle_A_to_B", "Idle_ver_B", SubResource("AnimationNodeStateMachineTransition_gl8cc"), "Idle_ver_A", "Idle_A_to_B", SubResource("AnimationNodeStateMachineTransition_jc3p3"), "Idle_ver_B", "Idle_B_to_A", SubResource("AnimationNodeStateMachineTransition_hax0n")]
+graph_offset = Vector2(-81, -77.55768)
+
+[node name="AnimationTree" type="AnimationTree" unique_id=948112266]
+root_node = NodePath("../Wadid")
+root_motion_track = NodePath("Skeleton3D:Unity_Grruzam_BaseModeling_Katana (1)")
+tree_root = SubResource("AnimationNodeStateMachine_a38lo")
+anim_player = NodePath("../Wadid/AnimationPlayer")
+parameters/Melee_Ground/Crouch_Locmotion/blend_position = 0.42771855
+parameters/Melee_Ground/Standing_Locmotion/blend_position = 0.20149253
+parameters/Unarmed_Ground/Crouch_Locmotion/blend_position = 0.0
+parameters/Unarmed_Ground/Standing_Locomotion/blend_position = -0.015991472

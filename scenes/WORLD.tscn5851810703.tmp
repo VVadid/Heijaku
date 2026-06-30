@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://b4mvxphjg48y8"]
+
+[ext_resource type="PackedScene" uid="uid://qdj3ygxum4jl" path="res://scenes/player.tscn" id="1_vem1d"]
+[ext_resource type="PackedScene" uid="uid://s8rtd88s6j8l" path="res://scenes/enemy.tscn" id="2_km3x0"]
+[ext_resource type="Script" uid="uid://bj4voopc7k56u" path="res://scripts/Player/Healthbar-mt.gd" id="3_km3x0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_errlg"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_bl13t"]
+sky_material = SubResource("ProceduralSkyMaterial_errlg")
+
+[sub_resource type="Environment" id="Environment_iyx0m"]
+background_mode = 2
+sky = SubResource("Sky_bl13t")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ij1v8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_km3x0"]
+albedo_color = Color(0.25142816, 0.6138639, 0.30145234, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_errlg"]
+size = Vector3(101.78418, 0.50878906, 11.796753)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vem1d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_km3x0"]
+bg_color = Color(0.7348985, 0, 0.14834231, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vem1d"]
+bg_color = Color(0.8627383, 0, 0.05299454, 1)
+
+[node name="WORLD" type="Node3D" unique_id=1071102995]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=772299889]
+environment = SubResource("Environment_iyx0m")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=355594717]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=308171790]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19815469, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=935421201]
+transform = Transform3D(44.780994, 0, 0, 0, 1, 0, 0, 0, 55.508877, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ij1v8")
+surface_material_override/0 = SubResource("StandardMaterial3D_km3x0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1077493124]
+transform = Transform3D(3.659733, 0, 0, 0, 1, 0, 0, 0, 12.524405, -48.16162, -0.24560547, -3.185608)
+shape = SubResource("BoxShape3D_errlg")
+debug_color = Color(0.9641985, 0, 0.4970621, 0.41960785)
+
+[node name="Player" parent="." unique_id=898052104 node_paths=PackedStringArray("camera_rig", "camera_spring", "lock_on_indicator") groups=["player"] instance=ExtResource("1_vem1d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+camera_rig = NodePath("../CameraRig")
+camera_spring = NodePath("../CameraRig/SpringArm3D")
+camera_distance = 3.0
+lock_on_indicator = NodePath("../CanvasLayer/TextureRect")
+
+[node name="Enemy" parent="." unique_id=443118059 instance=ExtResource("2_km3x0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9177902, 19.707645)
+collision_layer = 3
+aggressive_on_sight = true
+
+[node name="CameraRig" type="Node3D" parent="." unique_id=1837741377]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraRig" unique_id=1469400807]
+spring_length = 4.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig/SpringArm3D" unique_id=76314992]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1437096090]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=196868043]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_vem1d")
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=1391072415]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -48.0
+offset_right = 220.0
+offset_bottom = -21.0
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_km3x0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vem1d")
+script = ExtResource("3_km3x0")
